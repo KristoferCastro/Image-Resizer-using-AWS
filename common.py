@@ -1,3 +1,4 @@
+import os
 import json
 import re
 import random
@@ -8,7 +9,8 @@ from boto.sqs.message import Message
 keyre = re.compile('^AWSAccessKeyId=(.*)$')
 
 def getKeys(file):
-	with open(file,'r') as inf:
+	relativeFile = os.path.join(os.path.dirname(__file__), file)
+	with open(relativeFile,'r') as inf:
 		hdr = inf.readline()
 		
 		# JSON format
