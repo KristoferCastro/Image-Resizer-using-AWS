@@ -44,7 +44,7 @@ def url(name):
 
 
 # Executed when you curl -XPOST http://your-instance.com/
-@route('/upload', method='POST')
+@route('/', method='POST')
 def upload():	
 	# Get the uploaded image from the user
 	upload = request.files.get('image')
