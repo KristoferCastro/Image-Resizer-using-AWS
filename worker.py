@@ -64,6 +64,7 @@ try:
 			messageDict = json.loads(m.get_body())
 			key = messageDict["key"] + "-original"
 			image = read(key)
+			key = messageDict["key"]
 			for size in messageDict["sizes"]:
 				width = messageDict["sizes"][size]['width']
 				height = messageDict["sizes"][size]['height'] 
@@ -71,6 +72,7 @@ try:
 				fileName = key + "-" + size
 				write(fileName, thumb, image.format.lower())
 			queue.delete_message(m)	
+		time.sleep(1)
 # When someone tries to break the program just quit gracefully
 # instead of raising some nasty exception.
 except KeyboardInterrupt:

@@ -89,6 +89,7 @@ def upload():
 	# of the freshly minted image.
 	notify_worker(id, sizes)
 
+	print {key: url(id+'-'+key) for key in ['original'] + sizes.keys()}
 	# Return the URLs to the images.
 	return  { key: url(id+'-'+key) for key in ['original'] + sizes.keys() }
 
