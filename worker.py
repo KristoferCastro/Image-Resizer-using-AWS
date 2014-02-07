@@ -59,7 +59,7 @@ try:
 		# to generate the image and then write() to store the
 		# generated thumbnail back into S3. Good luck, have fun.
 		
-		messages = queue.get_messages()
+		messages = queue.get_messages(visibility_timeout=5)
 		for m in messages:
 			messageDict = json.loads(m.get_body())
 			key = messageDict["key"] + "-original"
@@ -73,6 +73,7 @@ try:
 				write(fileName, thumb, image.format.lower())
 			queue.delete_message(m)	
 		time.sleep(1)
+
 # When someone tries to break the program just quit gracefully
 # instead of raising some nasty exception.
 except KeyboardInterrupt:
